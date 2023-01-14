@@ -1,3 +1,10 @@
+## Technologies used in this project : 
+
+*  React
+* Tailwind
+* Redux
+* Redux thunk
+
 ## server
 
 
