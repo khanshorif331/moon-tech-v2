@@ -1,4 +1,8 @@
-import { TOGGLE_BRAND, TOGGLE_STOCK } from '../actionTypes/actionTypes'
+import {
+	SEARCH_PRODUCT,
+	TOGGLE_BRAND,
+	TOGGLE_STOCK,
+} from '../actionTypes/actionTypes'
 
 export const initialState = {
 	filters: {
@@ -9,6 +13,7 @@ export const initialState = {
 }
 
 export const filterReducer = (state = initialState, action) => {
+	console.log(action)
 	switch (action.type) {
 		case TOGGLE_BRAND:
 			if (!state.filters.brands.includes(action.payload)) {
@@ -37,6 +42,12 @@ export const filterReducer = (state = initialState, action) => {
 					...state.filters,
 					stock: !state.filters.stock,
 				},
+			}
+
+		case SEARCH_PRODUCT:
+			return {
+				...state,
+				keyword: action.payload,
 			}
 
 		default:

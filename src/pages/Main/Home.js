@@ -7,9 +7,11 @@ import loadProductData from '../../redux/thunk/products/fetchProducts'
 
 const Home = () => {
 	const filters = useSelector(state => state.filter.filters)
+	const keyword = useSelector(state => state.filter.keyword)
 	const products = useSelector(state => state.product.products)
 	const { brands, stock } = filters
 	const dispatch = useDispatch()
+	console.log(keyword.length, 'keyword')
 
 	useEffect(() => {
 		dispatch(loadProductData())
@@ -39,6 +41,25 @@ const Home = () => {
 				return product
 			})
 			.map(product => <ProductCard key={product.model} product={product} />)
+	}
+
+	if (products.length && keyword.length) {
+		let searchProduct = products
+			.filter(product => {
+				if (product.model.toLowerCase().includes(keyword.toLowerCase())) {
+					return product
+				}
+				return null
+			})
+			.map(product => <ProductCard key={product.model} product={product} />)
+		content = searchProduct.length ? (
+			searchProduct
+		) : (
+			<p className="font-bold text-red-500 text-center w-full">
+				No search result found!!
+			</p>
+		)
+		console.log(searchProduct)
 	}
 
 	return (
