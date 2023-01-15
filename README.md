@@ -1,6 +1,8 @@
 ## Technologies used in this project : 
 
-*  React
+* Javascript
+* React
+* React Router
 * Tailwind
 * Redux
 * Redux thunk
